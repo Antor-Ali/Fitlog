@@ -64,7 +64,7 @@ export default function WorkoutDetails({
   return (
     <main className="min-h-screen">
 
-      {/* Back */}
+     
       <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6">
         <Link
           href="/"
@@ -75,12 +75,12 @@ export default function WorkoutDetails({
         </Link>
       </div>
 
-      {/* Main */}
+     
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-16">
 
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
 
-          {/* IMAGE */}
+          
           <div className="relative h-[400px] overflow-hidden rounded-3xl border border-white/10 bg-[#111419] sm:h-[550px]">
 
             <Image
@@ -93,10 +93,10 @@ export default function WorkoutDetails({
 
           </div>
 
-          {/* CONTENT */}
+        
           <div>
 
-            {/* Category */}
+            
             <div className="mb-5 flex flex-wrap gap-2">
 
               {workout.muscleGroups.map((group) => (
@@ -110,17 +110,17 @@ export default function WorkoutDetails({
 
             </div>
 
-            {/* Title */}
+          
             <h1 className="text-4xl font-black uppercase leading-none sm:text-5xl">
               {workout.name}
             </h1>
 
-            {/* Description */}
+            
             <p className="mt-5 leading-7 text-gray-400">
               {workout.description}
             </p>
 
-            {/* Specs */}
+         
             <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-[#111419]">
 
               <div className="border-b border-white/5 px-5 py-4">
@@ -169,7 +169,7 @@ export default function WorkoutDetails({
               </div>
             </div>
 
-            {/* Instructions */}
+          
             <div className="mt-10">
 
               <h2 className="text-xl font-black uppercase">
@@ -201,10 +201,10 @@ export default function WorkoutDetails({
 
             </div>
 
-            {/* Actions */}
+            
             <div className="mt-10 grid gap-3 sm:grid-cols-2">
 
-              {/* Add To Plan */}
+              
               <button
                 onClick={handleAddToPlan}
                 disabled={alreadyInPlan || planFull}
@@ -229,7 +229,7 @@ export default function WorkoutDetails({
 
               </button>
 
-              {/* Save */}
+             
               <button
                 onClick={handleSave}
                 disabled={alreadySaved}
@@ -261,7 +261,7 @@ export default function WorkoutDetails({
 }
 
 
-/* Specs Component */
+
 function Spec({
   label,
   value,

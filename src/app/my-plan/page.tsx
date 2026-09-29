@@ -108,7 +108,7 @@ export default function MyPlanPage() {
 
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16">
 
-        {/* Header */}
+    
         <div className="mb-8">
 
           <p className="text-sm font-bold tracking-[0.25em] text-[#ccff00]">
@@ -127,7 +127,7 @@ export default function MyPlanPage() {
         </div>
 
 
-        {/* Metrics */}
+        
         <PlanMetrics
           exercises={plan.length}
           minutes={totalMinutes}
@@ -135,10 +135,9 @@ export default function MyPlanPage() {
         />
 
 
-        {/* Controls */}
         <div className="mt-8 flex flex-col gap-4">
 
-          {/* Tabs */}
+   
           <div className="flex w-fit rounded-full border border-white/5 bg-[#111419] p-1">
 
             <button
@@ -170,10 +169,10 @@ export default function MyPlanPage() {
           </div>
 
 
-          {/* Search + Sort */}
+        
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 
-            {/* Search */}
+          
             <div className="relative w-full sm:max-w-sm">
 
               <Search
@@ -194,7 +193,7 @@ export default function MyPlanPage() {
             </div>
 
 
-            {/* Sort */}
+          
             <div className="flex items-center gap-2">
 
               <SlidersHorizontal
@@ -236,7 +235,7 @@ export default function MyPlanPage() {
         </div>
 
 
-        {/* Workout list */}
+        
         <div className="mt-6 space-y-3">
 
           {filteredWorkouts.length === 0 ? (

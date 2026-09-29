@@ -39,7 +39,7 @@ export function FitlogProvider({
   const [saved, setSaved] = useState<Workout[]>([]);
   const [completed, setCompleted] = useState<number[]>([]);
 
-  // Load data from localStorage
+
   useEffect(() => {
     const storedPlan = localStorage.getItem("fitlog-plan");
     const storedSaved = localStorage.getItem("fitlog-saved");
@@ -59,7 +59,7 @@ export function FitlogProvider({
     }
   }, []);
 
-  // Save plan
+
   useEffect(() => {
     localStorage.setItem(
       "fitlog-plan",
@@ -67,7 +67,7 @@ export function FitlogProvider({
     );
   }, [plan]);
 
-  // Save saved workouts
+ 
   useEffect(() => {
     localStorage.setItem(
       "fitlog-saved",
@@ -75,7 +75,7 @@ export function FitlogProvider({
     );
   }, [saved]);
 
-  // Save completed workouts
+  
   useEffect(() => {
     localStorage.setItem(
       "fitlog-completed",

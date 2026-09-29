@@ -8,11 +8,11 @@ export default async function HomePage() {
   return (
     <main>
 
-      {/* Hero */}
+  
       <section className="px-6 py-16">
         <div className="mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2">
 
-          {/* Hero Text */}
+     
           <div>
             <h1 className="text-4xl font-bold md:text-6xl">
               Transform Your
@@ -29,7 +29,7 @@ export default async function HomePage() {
             </button>
           </div>
 
-          {/* Hero Image */}
+        
           <div className="flex justify-center">
             <Image
               src="/banner.png"
@@ -44,7 +44,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Workout Library */}
+       
       <WorkoutLibrary workouts={workouts} />
 
     </main>

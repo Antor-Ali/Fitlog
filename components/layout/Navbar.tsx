@@ -19,7 +19,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 border-b border-white/5 bg-[#0b0d10]/95 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
 
-        {/* Logo */}
+        
         <Link
           href="/"
           className="flex items-center gap-2 font-black tracking-wide"
@@ -34,7 +34,7 @@ export default function Navbar() {
         </Link>
 
 
-        {/* Desktop Navigation */}
+        
         <nav className="hidden items-center gap-2 md:flex">
 
         <Link
@@ -62,7 +62,7 @@ export default function Navbar() {
         </nav>
 
 
-        {/* Desktop Counters */}
+        
         <div className="hidden items-center gap-2 sm:flex">
 
           <Link
@@ -82,7 +82,7 @@ export default function Navbar() {
         </div>
 
 
-        {/* Mobile Menu Button */}
+      
         <button
           onClick={() =>
             setMobileOpen(!mobileOpen)
@@ -100,7 +100,7 @@ export default function Navbar() {
       </div>
 
 
-      {/* Mobile Menu */}
+     
       {mobileOpen && (
         <div className="border-t border-white/5 bg-[#0b0d10] px-4 py-4 md:hidden">
 

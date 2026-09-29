@@ -50,7 +50,7 @@ export default function WorkoutLibrary({
       className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 lg:py-28"
     >
 
-      {/* Heading */}
+     
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
 
         <div>
@@ -70,7 +70,7 @@ export default function WorkoutLibrary({
         </div>
 
 
-        {/* Sort */}
+    
         <div className="flex items-center gap-3">
 
           <span className="text-xs font-bold uppercase text-gray-600">
@@ -107,7 +107,7 @@ export default function WorkoutLibrary({
       </div>
 
 
-      {/* Cards */}
+    
       {sortedWorkouts.length === 0 ? (
 
         <div className="mt-10 rounded-2xl border border-white/5 bg-[#111419] p-12 text-center">
@@ -151,7 +151,7 @@ function WorkoutCard({
       className="group overflow-hidden rounded-2xl border border-white/5 bg-[#111419] hover:-translate-y-1 hover:border-white/10"
     >
 
-      {/* Image */}
+     
       <div className="relative aspect-[16/10] overflow-hidden">
 
         <img
@@ -162,7 +162,7 @@ function WorkoutCard({
 
         <div className="absolute inset-0 bg-gradient-to-t from-[#0b0d10]/80 via-transparent to-transparent" />
 
-        {/* Tags */}
+       
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
 
           {workout.muscleGroups.map(
@@ -181,7 +181,7 @@ function WorkoutCard({
       </div>
 
 
-      {/* Content */}
+    
       <div className="p-5">
 
         <h3 className="text-lg font-black uppercase leading-tight">
@@ -193,7 +193,7 @@ function WorkoutCard({
         </p>
 
 
-        {/* Stats */}
+    
         <div className="mt-5 flex items-center gap-4 border-t border-white/5 pt-4">
 
           <span className="flex items-center gap-1.5 text-xs text-gray-500">

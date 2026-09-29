@@ -64,7 +64,7 @@ export default function PlanCard({
 
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
 
-        {/* Image */}
+       
         <div className="relative h-28 w-full shrink-0 overflow-hidden rounded-xl sm:h-24 sm:w-36">
 
           <Image
@@ -77,7 +77,6 @@ export default function PlanCard({
         </div>
 
 
-        {/* Information */}
         <div className="min-w-0 flex-1">
 
           <div className="flex flex-wrap gap-2">
@@ -106,7 +105,7 @@ export default function PlanCard({
           </p>
 
 
-          {/* Stats */}
+       
           <div className="mt-3 flex flex-wrap gap-4 text-xs text-gray-500">
 
             <span className="flex items-center gap-1">
@@ -129,7 +128,7 @@ export default function PlanCard({
         </div>
 
 
-        {/* Actions */}
+       
         <div className="flex flex-wrap gap-2 sm:flex-col lg:flex-row">
 
           <Link
