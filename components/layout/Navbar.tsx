@@ -5,9 +5,12 @@ import { Dumbbell, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 import { useFitlog } from "@/context/FitlogContext";
+import { usePathname } from "next/navigation";
+
 
 export default function Navbar() {
   const { plan, saved } = useFitlog();
+  const pathname = usePathname();
 
   const [mobileOpen, setMobileOpen] =
     useState(false);
@@ -34,19 +37,27 @@ export default function Navbar() {
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-2 md:flex">
 
-          <Link
-            href="/"
-            className="rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-gray-400 transition hover:bg-white/5 hover:text-white"
-          >
-            Workout
-          </Link>
+        <Link
+  href="/"
+  className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
+    pathname === "/"
+      ? "bg-[#ccff00] text-black"
+      : "text-gray-400 hover:bg-white/5 hover:text-white"
+  }`}
+>
+  Workout
+</Link>
 
-          <Link
-            href="/my-plan"
-            className="rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider text-gray-400 transition hover:bg-white/5 hover:text-white"
-          >
-            My Plan
-          </Link>
+        <Link
+  href="/my-plan"
+  className={`rounded-full px-4 py-2 text-xs font-bold uppercase tracking-wider transition ${
+    pathname === "/my-plan"
+      ? "bg-[#ccff00] text-black"
+      : "text-gray-400 hover:bg-white/5 hover:text-white"
+  }`}
+>
+  My Plan
+</Link>
 
         </nav>
 
