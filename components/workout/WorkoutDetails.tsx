@@ -7,10 +7,7 @@ import {
   ArrowLeft,
   Bookmark,
   Check,
-  Clock3,
-  Flame,
   Plus,
-  Star,
 } from "lucide-react";
 
 import toast from "react-hot-toast";
@@ -30,14 +27,21 @@ export default function WorkoutDetails({
     saveWorkout,
     isInPlan,
     isSaved,
+    plan,
   } = useFitlog();
 
   const alreadyInPlan = isInPlan(workout.id);
   const alreadySaved = isSaved(workout.id);
+  const planFull = plan.length >= 5;
 
   function handleAddToPlan() {
     if (alreadyInPlan) {
       toast("Already in today's plan");
+      return;
+    }
+
+    if (planFull) {
+      toast("Today's plan is full. Maximum 5 workouts.");
       return;
     }
 
@@ -62,7 +66,6 @@ export default function WorkoutDetails({
 
       {/* Back */}
       <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6">
-
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wide text-gray-500 transition hover:text-[#ccff00]"
@@ -70,9 +73,7 @@ export default function WorkoutDetails({
           <ArrowLeft size={16} />
           Back to Library
         </Link>
-
       </div>
-
 
       {/* Main */}
       <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-16">
@@ -92,7 +93,6 @@ export default function WorkoutDetails({
 
           </div>
 
-
           {/* CONTENT */}
           <div>
 
@@ -110,18 +110,15 @@ export default function WorkoutDetails({
 
             </div>
 
-
             {/* Title */}
             <h1 className="text-4xl font-black uppercase leading-none sm:text-5xl">
               {workout.name}
             </h1>
 
-
             {/* Description */}
             <p className="mt-5 leading-7 text-gray-400">
               {workout.description}
             </p>
-
 
             {/* Specs */}
             <div className="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-[#111419]">
@@ -131,7 +128,6 @@ export default function WorkoutDetails({
                   Key Specs
                 </h2>
               </div>
-
 
               <div className="grid sm:grid-cols-2">
 
@@ -171,9 +167,7 @@ export default function WorkoutDetails({
                 />
 
               </div>
-
             </div>
-
 
             {/* Instructions */}
             <div className="mt-10">
@@ -186,7 +180,6 @@ export default function WorkoutDetails({
 
                 {workout.instructions.map(
                   (instruction, index) => (
-
                     <div
                       key={index}
                       className="flex gap-4"
@@ -201,7 +194,6 @@ export default function WorkoutDetails({
                       </p>
 
                     </div>
-
                   )
                 )}
 
@@ -209,19 +201,20 @@ export default function WorkoutDetails({
 
             </div>
 
-
             {/* Actions */}
             <div className="mt-10 grid gap-3 sm:grid-cols-2">
 
+              {/* Add To Plan */}
               <button
                 onClick={handleAddToPlan}
-                disabled={alreadyInPlan}
+                disabled={alreadyInPlan || planFull}
                 className={`flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-black uppercase transition ${
-                  alreadyInPlan
+                  alreadyInPlan || planFull
                     ? "cursor-not-allowed bg-white/10 text-gray-500"
                     : "bg-[#ccff00] text-black hover:scale-[1.02]"
                 }`}
               >
+
                 {alreadyInPlan ? (
                   <Check size={17} />
                 ) : (
@@ -230,10 +223,13 @@ export default function WorkoutDetails({
 
                 {alreadyInPlan
                   ? "Already Added"
-                  : "Add to Today's Plan"}
+                  : planFull
+                    ? "Plan Is Full"
+                    : "Add to Today's Plan"}
+
               </button>
 
-
+              {/* Save */}
               <button
                 onClick={handleSave}
                 disabled={alreadySaved}
@@ -243,11 +239,13 @@ export default function WorkoutDetails({
                     : "border-white/10 text-white hover:border-[#ccff00] hover:text-[#ccff00]"
                 }`}
               >
+
                 <Bookmark size={17} />
 
                 {alreadySaved
                   ? "Saved"
                   : "Save for Later"}
+
               </button>
 
             </div>
@@ -257,11 +255,13 @@ export default function WorkoutDetails({
         </div>
 
       </section>
+
     </main>
   );
 }
 
 
+/* Specs Component */
 function Spec({
   label,
   value,
@@ -271,6 +271,7 @@ function Spec({
 }) {
   return (
     <div className="flex items-center justify-between border-b border-white/5 px-5 py-4">
+
       <span className="text-xs font-bold uppercase tracking-wide text-gray-500">
         {label}
       </span>
@@ -278,6 +279,7 @@ function Spec({
       <span className="text-sm font-bold text-white">
         {value}
       </span>
+
     </div>
   );
 }
