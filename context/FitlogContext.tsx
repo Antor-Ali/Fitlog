@@ -12,6 +12,7 @@ import { Workout } from "@/types/workout";
 interface FitlogContextType {
   plan: Workout[];
   saved: Workout[];
+  completed: number[];
 
   addToPlan: (workout: Workout) => void;
   removeFromPlan: (id: number) => void;
@@ -19,13 +20,15 @@ interface FitlogContextType {
   saveWorkout: (workout: Workout) => void;
   removeSaved: (id: number) => void;
 
+  markAsDone: (id: number) => void;
+
   isInPlan: (id: number) => boolean;
   isSaved: (id: number) => boolean;
+  isCompleted: (id: number) => boolean;
 }
 
-const FitlogContext = createContext<FitlogContextType | undefined>(
-  undefined
-);
+const FitlogContext =
+  createContext<FitlogContextType | undefined>(undefined);
 
 export function FitlogProvider({
   children,
@@ -34,11 +37,14 @@ export function FitlogProvider({
 }) {
   const [plan, setPlan] = useState<Workout[]>([]);
   const [saved, setSaved] = useState<Workout[]>([]);
+  const [completed, setCompleted] = useState<number[]>([]);
 
-  // Load saved data
+  // Load data from localStorage
   useEffect(() => {
     const storedPlan = localStorage.getItem("fitlog-plan");
     const storedSaved = localStorage.getItem("fitlog-saved");
+    const storedCompleted =
+      localStorage.getItem("fitlog-completed");
 
     if (storedPlan) {
       setPlan(JSON.parse(storedPlan));
@@ -47,17 +53,35 @@ export function FitlogProvider({
     if (storedSaved) {
       setSaved(JSON.parse(storedSaved));
     }
+
+    if (storedCompleted) {
+      setCompleted(JSON.parse(storedCompleted));
+    }
   }, []);
 
   // Save plan
   useEffect(() => {
-    localStorage.setItem("fitlog-plan", JSON.stringify(plan));
+    localStorage.setItem(
+      "fitlog-plan",
+      JSON.stringify(plan)
+    );
   }, [plan]);
 
   // Save saved workouts
   useEffect(() => {
-    localStorage.setItem("fitlog-saved", JSON.stringify(saved));
+    localStorage.setItem(
+      "fitlog-saved",
+      JSON.stringify(saved)
+    );
   }, [saved]);
+
+  // Save completed workouts
+  useEffect(() => {
+    localStorage.setItem(
+      "fitlog-completed",
+      JSON.stringify(completed)
+    );
+  }, [completed]);
 
   function addToPlan(workout: Workout) {
     setPlan((current) => {
@@ -65,7 +89,11 @@ export function FitlogProvider({
         return current;
       }
 
-      if (current.some((item) => item.id === workout.id)) {
+      if (
+        current.some(
+          (item) => item.id === workout.id
+        )
+      ) {
         return current;
       }
 
@@ -75,13 +103,23 @@ export function FitlogProvider({
 
   function removeFromPlan(id: number) {
     setPlan((current) =>
-      current.filter((workout) => workout.id !== id)
+      current.filter(
+        (workout) => workout.id !== id
+      )
+    );
+
+    setCompleted((current) =>
+      current.filter((item) => item !== id)
     );
   }
 
   function saveWorkout(workout: Workout) {
     setSaved((current) => {
-      if (current.some((item) => item.id === workout.id)) {
+      if (
+        current.some(
+          (item) => item.id === workout.id
+        )
+      ) {
         return current;
       }
 
@@ -91,16 +129,36 @@ export function FitlogProvider({
 
   function removeSaved(id: number) {
     setSaved((current) =>
-      current.filter((workout) => workout.id !== id)
+      current.filter(
+        (workout) => workout.id !== id
+      )
     );
   }
 
+  function markAsDone(id: number) {
+    setCompleted((current) => {
+      if (current.includes(id)) {
+        return current;
+      }
+
+      return [...current, id];
+    });
+  }
+
   function isInPlan(id: number) {
-    return plan.some((workout) => workout.id === id);
+    return plan.some(
+      (workout) => workout.id === id
+    );
   }
 
   function isSaved(id: number) {
-    return saved.some((workout) => workout.id === id);
+    return saved.some(
+      (workout) => workout.id === id
+    );
+  }
+
+  function isCompleted(id: number) {
+    return completed.includes(id);
   }
 
   return (
@@ -108,12 +166,19 @@ export function FitlogProvider({
       value={{
         plan,
         saved,
+        completed,
+
         addToPlan,
         removeFromPlan,
+
         saveWorkout,
         removeSaved,
+
+        markAsDone,
+
         isInPlan,
         isSaved,
+        isCompleted,
       }}
     >
       {children}
